@@ -1,0 +1,39 @@
+replicaCount: 2
+
+image:
+  repository: go-postgres
+  tag: dev
+  pullPolicy: Never
+
+containerPort: 8080
+
+service:
+  type: ClusterIP
+  port: 8080
+
+postgres:
+  existingSecret: app-db-app
+  secretKey: uri
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 256Mi
+
+startupProbe:
+  path: /healthz
+  periodSeconds: 5
+  failureThreshold: 12
+
+readinessProbe:
+  path: /readyz
+  periodSeconds: 5
+  failureThreshold: 3
+
+livenessProbe:
+  path: /healthz
+  periodSeconds: 10
+  failureThreshold: 3
