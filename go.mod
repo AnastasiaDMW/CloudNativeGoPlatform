@@ -14,7 +14,10 @@ require (
 	go.opentelemetry.io/otel/sdk/log v1.47.0-rc.1
 )
 
-require go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.47.0 // indirect
+require (
+	github.com/DATA-DOG/go-sqlmock v1.5.2 // indirect
+	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.47.0 // indirect
+)
 
 require (
 	github.com/beorn7/perks v1.0.1 // indirect

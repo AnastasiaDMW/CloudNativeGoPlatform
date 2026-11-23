@@ -20,7 +20,6 @@ func (w *statusWriter) WriteHeader(status int) {
 func Metrics(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 
-		// Не собираем HTTP-метрики для самого Prometheus endpoint.
 		if r.URL.Path == "/metrics" {
 			next.ServeHTTP(w, r)
 			return
